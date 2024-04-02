@@ -37,13 +37,25 @@
     <div class="container">
       <h1>extended-nixpkgs</h1>
       <div class="content"><h1 id="notes-for-7th-of-june-2023">Notes for 7th of June, 2023</h1>
-<p>Those are my notes on extending nixpkgs with your own functions and abstractions. There may be other ways of doing it, but this is the one I find to be most ergonomic.</p>
+<p>Those are my notes on extending nixpkgs with your own functions and<br>
+abstractions. There may be other ways of doing it, but this is the one I find<br>
+to be most ergonomic.</p>
 <h2 id="what-is-nixpkgslib">What is <code>nixpkgs.lib</code></h2>
-<p>In the context of the Nix package manager and NixOS, <code>nixpkgs.lib</code> refers to a module within the Nixpkgs repository.</p>
-<p>The <code>nixpkgs.lib</code> module provides a set of utility functions and definitions that are commonly used across the Nixpkgs repository. It contains various helper functions and abstractions that make it easier to write Nix expressions and define packages. We often use those functions to simplify our configurations and the nix package build processes.</p>
+<p>In the context of the Nix package manager and NixOS, <code>nixpkgs.lib</code> refers to<br>
+a module within the Nixpkgs repository. The <code>nixpkgs.lib</code> module provides a<br>
+set of utility functions and definitions that are commonly used across the<br>
+Nixpkgs repository. It contains various helper functions and abstractions that<br>
+make it easier to write Nix expressions and define packages. We often use those<br>
+functions to simplify our configurations and the nix package build processes.</p>
 <h2 id="why-would-you-need-to-extend-nixpkgslib">Why would you need to extend <code>nixpkgs.lib</code></h2>
-<p>While the library functions provided by nixpkgs is quite extensive and usually suits my needs, I sometimes feel the need to define my own function or wrap an existing function to complete a task. Normally we can handle the process of a function inside a simple <code>let in</code> and be well off, but there may be times you need to re-use the existing function across your configuration file.</p>
-<p>In such times, you might want to either write your own lib and inherit it at the source of your <code>flake.nix</code> to then inherit them across your configuration. Today's notes document the process of doing exactly that.</p>
+<p>While the library functions provided by nixpkgs is quite extensive and usually<br>
+suits my needs, I sometimes feel the need to define my own function or wrap an<br>
+existing function to complete a task. Normally we can handle the process of a<br>
+function inside a simple <code>let in</code> and be well off, but there may be times you<br>
+need to re-use the existing function across your configuration file.</p>
+<p>In such times, you might want to either write your own lib and inherit it at<br>
+the source of your <code>flake.nix</code> to then inherit them across your configuration.</p>
+<p>Today's notes document the process of doing exactly that.</p>
 <h2 id="extending-nixpkgslib">Extending <code>nixpkgs.lib</code></h2>
 <p>I find the easiest way of extending nixpkgs.lib to be using an overlay.</p>
 <pre><code class="language-nix"># lib/default.nix
@@ -58,8 +70,9 @@
     }
   )
 </code></pre>
-<p>The above structure takes the existing <code>lib</code> from <code>nixpkgs</code>, and appends your own configurations to it.<br>
-You may then import this library in your <code>flake.nix</code> to pass it to other imports and definitions.</p>
+<p>The above structure takes the existing <code>lib</code> from <code>nixpkgs</code>, and appends your<br>
+own configurations to it. You may then import this library in your <code>flake.nix</code><br>
+to pass it to other imports and definitions.</p>
 <pre><code class="language-nix"># flake.nix
 flake = let
     # extended nixpkgs lib, contains my custom functions
@@ -69,8 +82,19 @@ in {
     nixosConfigurations = import ./hosts {inherit nixpkgs self lib;};
 };
 </code></pre>
-<p>In this example (see my <code>flake.nix</code> for the actual implementation) I import my extended lib from <code>lib/default.nix</code>, where I defined the overlay. I then pass the extended lib to my <code>nixosConfiguratiıns</code>, which is an entry-point for all of my nixos configurations. As such, I am able to re-use myown utility functions across my system as I see fit.</p>
-<p>THe problem with this approach is that it may be confusing for other people reviewing your configuration. With this approach, <code>lib.customFunction</code> looks identical to any lib function, which may lead to people thinking the function exists in nixpkgs itself while it is only provided by your configuration. The solution for that is simple though, instead of extending nixpkgs.lib, you may define your own lib that does not inherit from <code>nixpkgs.lib</code> and only contains your functions. The process would be similar, and you would not need to define an overlay.</p>
+<p>In this example (see my <code>flake.nix</code> for the actual implementation) I import my<br>
+extended lib from <code>lib/default.nix</code>, where I defined the overlay. I then pass<br>
+the extended lib to my <code>nixosConfiguratiıns</code>, which is an entry-point for all<br>
+of my NixOS configurations. As such, I am able to re-use my own utility<br>
+functions across my system as I see fit.</p>
+<p>The problem with this approach is that it may be confusing for other people<br>
+reviewing your configuration. With this approach, <code>lib.customFunction</code> looks<br>
+identical to any lib function, which may lead to people thinking the function<br>
+exists in nixpkgs itself while it is only provided by your configuration. The<br>
+solution for that is simple though, instead of extending <code>nixpkgs.lib</code>, you may<br>
+define your own lib that does not inherit from <code>nixpkgs.lib</code> and only contains<br>
+your functions. The process would be similar, and you would not need to define<br>
+an overlay.</p>
 <pre><code class="language-nix"># flake.nix
 flake = let
     # extended nixpkgs lib, contains my custom functions
@@ -91,7 +115,8 @@ in {
     # your functions here
 }
 </code></pre>
-<p>You can find a real life example of the alternative approach in my <a href="https://github.com/NotAShelf/neovim-flake/blob/main/lib/stdlib-extended.nix">neovim-flake's lib</a>.</p>
+<p>You can find a real life example of the alternative approach in<br>
+my <a href="https://github.com/NotAShelf/neovim-flake/blob/main/lib/stdlib-extended.nix">neovim-flake's lib</a>.</p>
 </div>
       <a href="#" class="scroll-up-button button" onclick="scrollToTop()">
         Go to Top

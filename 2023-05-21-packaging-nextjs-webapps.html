@@ -37,20 +37,26 @@
     <div class="container">
       <h1>packaging-nextjs-webapps</h1>
       <div class="content"><h1 id="notes-for-21st-of-june-2023">Notes for 21st of June, 2023</h1>
-<p>Recenty I have had to go through the misfortune of hosting some websites written with <em>NextJS</em> on my VPS running NixOS, this note entry shall document<br>
+<p>Recenty I have had to go through the misfortune of hosting some websites<br>
+written with <em>NextJS</em> on my VPS running NixOS, this note entry shall document<br>
 my experience and the &quot;easy&quot; path I have chosen.</p>
 <h2 id="packaging">Packaging</h2>
-<p>The websites I hosted were of two variety: those statically exported, and those that cannot be statically exported.</p>
+<p>The websites I hosted were of two variety: those statically exported, and<br>
+those that cannot be statically exported.</p>
 <h3 id="statically-exported-webapps">Statically Exported Webapps</h3>
-<p>Statically exported ones are easy to package, because it is a matter of running <code>npm build</code> (or whatever your build script is) with the following NextJS settings</p>
+<p>Statically exported ones are easy to package, because it is a matter of<br>
+running <code>npm build</code> (or whatever your build script is) with the following<br>
+NextJS settings</p>
 <pre><code class="language-js">// next.config.js
 module.exports = {
-    distDir: &quot;dist&quot;, // an artitrary path for your export
-    output: &quot;export&quot;,
+  distDir: &quot;dist&quot;, // an artitrary path for your export
+  output: &quot;export&quot;,
 };
 </code></pre>
-<p>This will export a static website with a bunch of html files that you can then serve with nodePackages.serve or a webserver like nginx or apache.<br>
-And that is the end of your worries for a statically exported website! No headache, just write a simple derivation, such as the one below</p>
+<p>This will export a static website with a bunch of html files that you can<br>
+then serve with nodePackages.serve or a webserver like nginx or apache.<br>
+And that is the end of your worries for a statically exported website! No<br>
+headache, just write a simple derivation, such as the one below</p>
 <pre><code class="language-nix"># default.nix
 {
   buildNpmPackage,
@@ -74,10 +80,16 @@ buildNpmPackage {
   '';
 }
 </code></pre>
-<p>and serve its path with a simple tool after building the derivation, I find nginx to be awfully convenient for doing so.</p>
+<p>and serve its path with a simple tool after building the derivation, I find<br>
+nginx to be awfully convenient for doing so, but you may choose caddy if you<br>
+prefer.</p>
 <h3 id="webapps-that-cannot-be-statically-exported">Webapps that cannot be statically exported</h3>
-<p>If your website depends on API routes for some reasons, then Next will not allow you to do static export. Which means you need to run <code>next start</code> in some shape or form. While a systemd service is certainly a way of doing it (one that I do not recommend), a oci container works as well if not better.</p>
-<p>You can write a &quot;simple&quot; docker image for your oci container to use, such as the one below</p>
+<p>If your website depends on API routes for some reasons, then Next will not<br>
+allow you to do static export. Which means you need to run <code>next start</code> in<br>
+some shape or form. While a systemd service is certainly a way of doing it<br>
+(one that I do not recommend), a oci container works as well if not better.</p>
+<p>You can write a &quot;simple&quot; docker image for your oci container to use, such as<br>
+the one below</p>
 <pre><code class="language-nix"># dockerImage.nix
 {
   pkgs,
@@ -116,8 +128,9 @@ buildNpmPackage {
   };
 }
 </code></pre>
-<p>and then configure oci-containers to pick up the Docker image that you have built.<br>
-This is a simplified version of my VPS' container setup. An example can be found in my <code>modules/extra/server/services</code> module.</p>
+<p>Then, configure oci-containers module option to pick up the Docker image that<br>
+you have built. This is a simplified version of my VPS' container setup.<br>
+An example can be found in my <a href="https://github.com/NotAShelf/nyx/blob/a9e129663ac91302f2fd935351a71cbbd2832f64/modules/core/roles/server/system/services/mkm.nix">server module</a></p>
 <pre><code class="language-nix">virtualisation.oci-containers = {
   backend = &quot;podman&quot;;
   containers = {
@@ -135,12 +148,16 @@ This is a simplified version of my VPS' container setup. An example can be found
   };
 };
 </code></pre>
-<p>After a rebuild, your system will provision the container and start it on port 3000. You can access it with <code>your-server-ip:3000</code> in your browser, and even configure nginx to set up a reverse proxy to assign your domain.</p>
+<p>After a rebuild, your system will provision the container and start it on<br>
+port <strong>3000</strong>. You can access it with <code>your-server-ip:3000</code> in your<br>
+browser, and even configure nginx to set up a reverse proxy to assign<br>
+your domain.</p>
 <pre><code class="language-conf">&quot;example.com&quot; = {
   locations.&quot;/&quot;.proxyPass = &quot;http://127.0.0.1:3000&quot;;
 };
 </code></pre>
-<p>This will assign your domain to your webserver, and allow outside visitors to view your &quot;awesome&quot; NextJS webapp.</p>
+<p>This will assign your domain to your webserver, and allow outside<br>
+visitors to view your &quot;awesome&quot; NextJS webapp.</p>
 </div>
       <a href="#" class="scroll-up-button button" onclick="scrollToTop()">
         Go to Top
