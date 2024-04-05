@@ -509,7 +509,7 @@ href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 		<script>
 			// Dropdown post listing
 			function fetchPosts() {
-				fetch("/posts.json")
+				fetch("/posts/posts.json")
 					.then((response) => response.json())
 					.then((data) => {
 						const dropdownContent =

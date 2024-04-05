@@ -180,7 +180,7 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#c
 		<script>
 			// Dropdown post listing
 			function fetchPosts() {
-				fetch("/posts.json")
+				fetch("/posts/posts.json")
 					.then((response) => response.json())
 					.then((data) => {
 						const dropdownContent =
