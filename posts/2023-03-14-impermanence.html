@@ -127,11 +127,31 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 			</nav>
 		</header>
 
-		<main><h1 id="notes-for-14th-of-march-2023">Notes for 14th of March,
+		<main>
+						<nav id="TOC" role="doc-toc">
+				 <ul>
+<li><a href="#notes-for-14th-of-march-2023"
+id="toc-notes-for-14th-of-march-2023">Notes for 14th of March, 2023</a>
+<ul>
+<li><a href="#resources" id="toc-resources">Resources</a></li>
+<li><a href="#the-actual-set-up-and-reproduction-steps"
+id="toc-the-actual-set-up-and-reproduction-steps">The actual set-up (and
+reproduction steps)</a>
+<ul>
+<li><a href="#reproduction-steps"
+id="toc-reproduction-steps">Reproduction steps</a></li>
+<li><a href="#closing-notes" id="toc-closing-notes">Closing
+Notes</a></li>
+</ul></li>
+<li><a href="#why" id="toc-why">Why?</a></li>
+</ul></li>
+</ul>
+			</nav>
+			 <h1 id="notes-for-14th-of-march-2023">Notes for 14th of March,
 2023</h1>
-<p>Today was the day I finally got to setting up both “erase your
-darlings” and proper disk encryption. This general setup concept
-utilizes NixOS’ ability to boot off of a disk that contains only
+<p>Today was the day I finally got to setting up both "erase your
+darlings" and proper disk encryption. This general setup concept
+utilizes NixOS' ability to boot off of a disk that contains only
 <code>/nix</code> and <code>/boot</code>, linking appropriate devices
 and blocks during the boot process and deleting all state that programs
 may have left over my system.</p>
@@ -155,7 +175,7 @@ href="https://github.com/nix-community/impermanence">Impermanence</a></li>
 </ul>
 <h2 id="the-actual-set-up-and-reproduction-steps">The actual set-up (and
 reproduction steps)</h2>
-<p>I’ve had to go through a few guides before I could figure out a set
+<p>I've had to go through a few guides before I could figure out a set
 up that I really like. The final decision was that I would have an
 encrypted disk that restores itself to its former state during boot. Is
 it fast? Absolutely not. But it sure as hell is cool. And stateless!</p>
@@ -170,7 +190,7 @@ and mount the root to go on with our day.</p>
 with bringing parted to your pre-formatted disks, by all means feel free
 to skip this section. I, however, choose to format a fresh disk.</p>
 <p>Start by partitioning the sections of our disk (sda1, sda2 and sda3)
-<em>Device names might change if you’re using a nvme disk, i.e
+<em>Device names might change if you're using a nvme disk, i.e
 nvme0p1.</em></p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the disk name to make it easier</span></span>
@@ -191,8 +211,8 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="
 class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. If
 I were a little more advanced, and if I did not disable hibernation due
 to overly-hardened kernel parameters, I would also be encrypting the
-swap to secure the hibernates… but that is <em>currently</em> out of my
-scope. You may find this desirable, however, I will not be providing
+swap to secure the hibernates... but that is <em>currently</em> out of
+my scope. You may find this desirable, however, I will not be providing
 instructions on that.</em></p>
 <p>Encrypt your partition, and open it to make it available under
 <code>/dev/mapper/enc</code>.</p>
@@ -341,8 +361,8 @@ flake to boot, so there is no need to make any revisions. If you are
 starting from scratch, you may consider tweaking your configuration.nix
 before you install the system. An editor, such as Neovim, or your
 preferred DE/wm make good additions to your configuration.</p>
-<p>Once it’s all done, take a deep breath and
-<code>nixos-install</code>. Once the installation is done, you’ll be
+<p>Once it's all done, take a deep breath and
+<code>nixos-install</code>. Once the installation is done, you'll be
 prompted for the root password and after that you can reboot. Now you
 are running NixOS on an encrypted disk. Nice!</p>
 <p>Next up, if you are feeling <em>really</em> fancy today, is to
@@ -454,14 +474,16 @@ role="doc-endnotes">
 <ol>
 <li id="fn1"><p>I could be using <code>tmpfs</code> for <code>/</code>
 at this point in time. Unfortunately, since I share this setup on some
-of my low-end laptops, I’ve got no RAM to spare - which is exactly why I
+of my low-end laptops, I've got no RAM to spare - which is exactly why I
 have opted out with BTRFS. It is a reliable filesystem that I am used
-to, and it allows for us to use a script that we’ll see later on.<a
+to, and it allows for us to use a script that we'll see later on.<a
 href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://opensource.com/article/20/6/linux-noatime<a
+<li id="fn2"><p><a
+href="https://opensource.com/article/20/6/linux-noatime">https://opensource.com/article/20/6/linux-noatime</a><a
 href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section></main>
+</section> 
+		</main>
 		<footer>
 			<div class="footer-divider"></div>
 			<p>&copy; 2024 NotAShelf</p>

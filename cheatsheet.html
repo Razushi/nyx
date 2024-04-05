@@ -64,7 +64,33 @@ ul.task-list li input[type="checkbox"] {
 			</nav>
 		</header>
 
-		<main><h1 id="cheat-sheet">Cheat sheet</h1>
+		<main>
+						<nav id="TOC" role="doc-toc">
+				 <ul>
+<li><a href="#cheat-sheet" id="toc-cheat-sheet">Cheat sheet</a>
+<ul>
+<li><a href="#show-gc-roots" id="toc-show-gc-roots">Show GC
+roots</a></li>
+<li><a href="#list-all-packages" id="toc-list-all-packages">List all
+packages</a></li>
+<li><a href="#find-biggest-packages" id="toc-find-biggest-packages">Find
+biggest packages</a></li>
+<li><a href="#find-biggest-closures-packages-including-dependencies"
+id="toc-find-biggest-closures-packages-including-dependencies">Find
+biggest closures (packages including dependencies)</a></li>
+<li><a href="#show-package-dependencies-as-tree"
+id="toc-show-package-dependencies-as-tree">Show package dependencies as
+tree</a></li>
+<li><a href="#show-package-dependencies-including-size"
+id="toc-show-package-dependencies-including-size">Show package
+dependencies including size</a></li>
+<li><a href="#show-the-things-that-will-change-on-reboot"
+id="toc-show-the-things-that-will-change-on-reboot">Show the things that
+will change on reboot</a></li>
+</ul></li>
+</ul>
+			</nav>
+			 <h1 id="cheat-sheet">Cheat sheet</h1>
 <h2 id="show-gc-roots">Show GC roots</h2>
 <pre class="shell"><code>nix-store --gc --print-roots | grep -v &quot;&lt;hostName&gt;&quot; | column -t | sort -k3 -k1</code></pre>
 <h2 id="list-all-packages">List all packages</h2>
@@ -88,7 +114,8 @@ dependencies including size</h2>
 <pre class="shell"><code>nix path-info -hSr nixpkgs#hello</code></pre>
 <h2 id="show-the-things-that-will-change-on-reboot">Show the things that
 will change on reboot</h2>
-<pre class="shell"><code>diff &lt;(nix-store -qR /run/current-system) &lt;(nix-store -qR  /run/booted-system)</code></pre></main>
+<pre class="shell"><code>diff &lt;(nix-store -qR /run/current-system) &lt;(nix-store -qR  /run/booted-system)</code></pre> 
+		</main>
 		<footer>
 			<div class="footer-divider"></div>
 			<p>&copy; 2024 NotAShelf</p>

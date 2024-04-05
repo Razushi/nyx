@@ -127,10 +127,24 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 			</nav>
 		</header>
 
-		<main><h1 id="notes-for-11th-of-november-2023">Notes for 11th of
-November, 2023</h1>
-<p>Today’s main attraction is the Headscale setup on my VPS running
-NixOS, which I’ve finally came around to self-host.</p>
+		<main>
+						<nav id="TOC" role="doc-toc">
+				 <ul>
+<li><a href="#notes-for-11th-of-november-2023"
+id="toc-notes-for-11th-of-november-2023">Notes for 11th of November,
+2023</a>
+<ul>
+<li><a href="#running-headscale" id="toc-running-headscale">Running
+Headscale</a></li>
+<li><a href="#using-headscale" id="toc-using-headscale">Using
+Headscale</a></li>
+</ul></li>
+</ul>
+			</nav>
+			 <h1 id="notes-for-11th-of-november-2023">Notes for 11th of November,
+2023</h1>
+<p>Today's main attraction is the Headscale setup on my VPS running
+NixOS, which I've finally came around to self-host.</p>
 <p>There has been much talk about this new product called Tailscale
 recently around the web, especially in the last few years. Tailscale is
 a VPN service that makes the devices and applications we own accessible
@@ -192,8 +206,9 @@ key.</p>
 <pre class="console"><code>tailscale up --login-server https://tailscale.example.com --authkey &lt;YOUR_AUTH_KEY&gt;</code></pre>
 <p>And all done! Now try connecting to one of your machines using the
 hostname now to test if the connection is actually working. If anything
-goes wrong, make sure to check your DNS settings: remember, it’s always
-the DNS.</p></main>
+goes wrong, make sure to check your DNS settings: remember, it's always
+the DNS.</p> 
+		</main>
 		<footer>
 			<div class="footer-divider"></div>
 			<p>&copy; 2024 NotAShelf</p>

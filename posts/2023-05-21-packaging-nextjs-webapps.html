@@ -127,11 +127,28 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 			</nav>
 		</header>
 
-		<main><h1 id="notes-for-21st-of-june-2023">Notes for 21st of June,
-2023</h1>
+		<main>
+						<nav id="TOC" role="doc-toc">
+				 <ul>
+<li><a href="#notes-for-21st-of-june-2023"
+id="toc-notes-for-21st-of-june-2023">Notes for 21st of June, 2023</a>
+<ul>
+<li><a href="#packaging" id="toc-packaging">Packaging</a>
+<ul>
+<li><a href="#statically-exported-webapps"
+id="toc-statically-exported-webapps">Statically Exported
+Webapps</a></li>
+<li><a href="#webapps-that-cannot-be-statically-exported"
+id="toc-webapps-that-cannot-be-statically-exported">Webapps that cannot
+be statically exported</a></li>
+</ul></li>
+</ul></li>
+</ul>
+			</nav>
+			 <h1 id="notes-for-21st-of-june-2023">Notes for 21st of June, 2023</h1>
 <p>Recenty I have had to go through the misfortune of hosting some
 websites written with <em>NextJS</em> on my VPS running NixOS, this note
-entry shall document my experience and the “easy” path I have
+entry shall document my experience and the "easy" path I have
 chosen.</p>
 <h2 id="packaging">Packaging</h2>
 <p>The websites I hosted were of two variety: those statically exported,
@@ -183,7 +200,7 @@ will not allow you to do static export. Which means you need to run
 <code>next start</code> in some shape or form. While a systemd service
 is certainly a way of doing it (one that I do not recommend), a oci
 container works as well if not better.</p>
-<p>You can write a “simple” docker image for your oci container to use,
+<p>You can write a "simple" docker image for your oci container to use,
 such as the one below</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode nix"><code class="sourceCode nix"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dockerImage.nix</span></span>
@@ -224,7 +241,7 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb3-1"><a href="#c
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Then, configure oci-containers module option to pick up the Docker
-image that you have built. This is a simplified version of my VPS’
+image that you have built. This is a simplified version of my VPS'
 container setup. An example can be found in my <a
 href="https://github.com/NotAShelf/nyx/blob/a9e129663ac91302f2fd935351a71cbbd2832f64/modules/core/roles/server/system/services/mkm.nix">server
 module</a></p>
@@ -254,7 +271,8 @@ class="sourceCode conf"><code class="sourceCode toml"><span id="cb5-1"><a href="
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">  </span><span class="dt">locations.&quot;/&quot;.proxyPass</span><span class="op"> =</span> <span class="st">&quot;http://127.0.0.1:3000&quot;</span><span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span><span class="er">;</span></span></code></pre></div>
 <p>This will assign your domain to your webserver, and allow outside
-visitors to view your “awesome” NextJS webapp.</p></main>
+visitors to view your "awesome" NextJS webapp.</p> 
+		</main>
 		<footer>
 			<div class="footer-divider"></div>
 			<p>&copy; 2024 NotAShelf</p>

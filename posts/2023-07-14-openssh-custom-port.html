@@ -127,8 +127,23 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 			</nav>
 		</header>
 
-		<main><h1 id="notes-for-14th-of-july-2023">Notes for 14th of July,
-2023</h1>
+		<main>
+						<nav id="TOC" role="doc-toc">
+				 <ul>
+<li><a href="#notes-for-14th-of-july-2023"
+id="toc-notes-for-14th-of-july-2023">Notes for 14th of July, 2023</a>
+<ul>
+<li><a href="#the-openssh-configuration"
+id="toc-the-openssh-configuration">The OpenSSH Configuration</a></li>
+<li><a href="#nix-builder-configuration"
+id="toc-nix-builder-configuration">Nix Builder Configuration</a>
+<ul>
+<li><a href="#home-manager" id="toc-home-manager">Home-Manager</a></li>
+</ul></li>
+</ul></li>
+</ul>
+			</nav>
+			 <h1 id="notes-for-14th-of-july-2023">Notes for 14th of July, 2023</h1>
 <p>My VPS, which hosts some of my infrastructure, has been running NixOS
 for a while now. Although weak, I use it for distributed builds
 alongside the rest of my NixOS machines on a Tailscale network.</p>
@@ -141,7 +156,7 @@ default <strong>22</strong> to something different. While this is not
 exactly a pancea, it helps alleviate the insane log spam I get from
 failed ssh requests.</p>
 <h2 id="the-openssh-configuration">The OpenSSH Configuration</h2>
-<p>First thing we’ve done is to configure openssh to listen on the new
+<p>First thing we've done is to configure openssh to listen on the new
 port on your server configuration</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode nix"><code class="sourceCode nix"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>services.openssh = <span class="op">{</span></span>
@@ -193,7 +208,8 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb4-1"><a href="#c
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>And that will be all. You are ready to use your new non-default port,
-mostly safe from port scanners.</p></main>
+mostly safe from port scanners.</p> 
+		</main>
 		<footer>
 			<div class="footer-divider"></div>
 			<p>&copy; 2024 NotAShelf</p>
