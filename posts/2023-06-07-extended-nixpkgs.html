@@ -8,7 +8,7 @@
 			content="width=device-width, initial-scale=1.0, user-scalable=yes"
 		/>
 		   		<meta name="description" content="NotAShelf's notes on various topics" />
-				<title>2023-06-07-extended-nixpkgs.md</title>
+				<title>Posts - Extended Nixpkgs</title>
 		<style>
 			code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,15 +90,7 @@ code span.vs { color: #cc9393; } /* VerbatimString */
 code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 		</style>
 				<link rel="stylesheet" href="/style.css" />
-				<!-- Begin Google Fonts import -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-			rel="stylesheet"
-		/>
-		<!-- End Google Fonts import -->
-		<!-- Begin Lineicons import -->
+				<!-- Begin Lineicons import -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.lineicons.com/4.0/lineicons.css"
@@ -247,14 +239,8 @@ lib</a>.</p>
 			<div class="footer-divider"></div>
 			<p>&copy; 2024 NotAShelf</p>
 			<div class="footer-icons">
-				<a href="https://twitter.com/notashelf">
-					<i class="lni lni-twitter-original" title="Twitter">></i>
-				</a>
 				<a href="https://github.com/notashelf">
 					<i class="lni lni-github-original" title="GitHub"></i>
-				</a>
-				<a href="/feed.json">
-					<i class="lni lni-rss-feed" title="RSS Feed">></i>
 				</a>
 			</div>
 		</footer>
@@ -271,7 +257,8 @@ lib</a>.</p>
 							postLink.textContent = post.title;
 							// we could use posts.url here, instead of posts.path
 							// but it messes with local serving, which prefers `/`
-							// to the actual URL, which would point to the live site
+							// to the actual URL, as it would point to the live site
+							// by path
 							postLink.href = post.path;
 							dropdownContent.appendChild(postLink);
 						});
