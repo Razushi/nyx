@@ -48,6 +48,13 @@
       "date": "2024-05-10",
       "title": "Ssh Signing",
       "path": "/posts/2024-05-10-ssh-signing.html"
+    },
+    {
+      "name": "2024-05-11-on-sysrq.md",
+      "url": "https://nyx.notashelf.dev/posts/2024-05-11-on-sysrq.html",
+      "date": "2024-05-11",
+      "title": "On Sysrq",
+      "path": "/posts/2024-05-11-on-sysrq.html"
     }
   ]
 }
