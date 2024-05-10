@@ -63,11 +63,15 @@ ul.task-list li input[type="checkbox"] {
 			</nav>
 		</header>
 
-		<main><h1 id="404---page-not-found">404 - Page Not Found</h1>
-<p>Sorry, the page you were looking for does not exist.</p> </main>
+		<main>
+			<h2 id="404--this-is-not-the-page-you-are-looking-for">404 | This is not
+the page you are looking for.</h2> 
+			<a id="countdown"></a>
+		</main>
+
 		<footer>
 			<div class="footer-divider"></div>
-			<p>&copy; 2024 NotAShelf</p>
+			<p>&copy; <span id="copyright"></span> NotAShelf</p>
 			<div class="footer-icons">
 				<a href="https://github.com/notashelf">
 					<i class="lni lni-github-original" title="GitHub"></i>
@@ -75,6 +79,33 @@ ul.task-list li input[type="checkbox"] {
 			</div>
 		</footer>
 		<script>
+			// Update the copyright tex
+			const currentYear = new Date().getFullYear();
+			const copyrightYear =
+				currentYear !== 2024 ? "2024 - " + currentYear : "2024";
+
+			document.getElementById("copyright").textContent = copyrightYear;
+
+			// Countdown timer
+			let countdown = 10;
+			const countdownElement = document.getElementById("countdown");
+			const countdownInterval = setInterval(updateCountdown, 1000);
+			updateCountdown();
+
+			function updateCountdown() {
+				countdown--;
+				if (countdown <= 0) {
+					clearInterval(countdownInterval);
+					window.location.href = "/";
+				} else {
+					countdownElement.textContent =
+						"Redirecting in " +
+						countdown +
+						" second" +
+						(countdown !== 1 ? "s." : ".");
+				}
+			}
+
 			// Dropdown post listing
 			function fetchPosts() {
 				fetch("/posts/posts.json")

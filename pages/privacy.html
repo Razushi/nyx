@@ -79,7 +79,7 @@ information with any third parties.</li>
 		</main>
 		<footer>
 			<div class="footer-divider"></div>
-			<p>&copy; 2024 NotAShelf</p>
+			<p>&copy; <span id="copyright"></span> NotAShelf</p>
 			<div class="footer-icons">
 				<a href="https://github.com/notashelf">
 					<i class="lni lni-github-original" title="GitHub"></i>
@@ -87,6 +87,13 @@ information with any third parties.</li>
 			</div>
 		</footer>
 		<script>
+			// Update the copyright text
+			const currentYear = new Date().getFullYear();
+			const copyrightYear =
+				currentYear !== 2024 ? "2024 - " + currentYear : "2024";
+
+			document.getElementById("copyright").textContent = copyrightYear;
+
 			// Dropdown post listing
 			function fetchPosts() {
 				fetch("/posts/posts.json")
