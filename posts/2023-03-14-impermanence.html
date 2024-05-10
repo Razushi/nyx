@@ -214,9 +214,9 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="
 class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. If
 I were a little more advanced, and if I did not disable hibernation due
 to overly-hardened kernel parameters, I would also be encrypting the
-swap to secure the hibernates... but that is <em>currently</em> out of
-my scope. You may find this desirable, however, I will not be providing
-instructions on that.</em></p>
+swap to secure the hibernates... but that is _currently</em> out of my
+scope. You may find this desirable, however, I will not be providing
+instructions on that._</p>
 <p>Encrypt your partition, and open it to make it available under
 <code>/dev/mapper/enc</code>.</p>
 <div class="sourceCode" id="cb3"><pre
@@ -277,7 +277,7 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="
 <p>And finally let NixOS generate the hardware configuration.</p>
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nixos-generate-config</span> <span class="at">--root</span> /mnt</span></code></pre></div>
-<p>The genereated configuration will be available at
+<p>The generated configuration will be available at
 <code>/mnt/etc/nixos</code>.</p>
 <p>Before we move on, we need to add the
 <code>neededForBoot = true;</code> to some mounted subvolumes in
@@ -352,7 +352,7 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb9-1"><a href="#c
 <span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Do keep in mind that the NixOS hardware scanner
 <strong>cannot</strong> pick up your mount options. Which means that you
-should specifiy the options (i.e <code>noatime</code>) for each btrfs
+should specify the options (i.e <code>noatime</code>) for each btrfs
 volume that you have created in <code>hardware-configuration.nix</code>.
 You can simply add them in the <code>options = [ ]</code> list in
 quotation marks. I recommend adding at least zstd compression, and
