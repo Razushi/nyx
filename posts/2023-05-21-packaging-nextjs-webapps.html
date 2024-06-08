@@ -231,7 +231,7 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb3-1"><a href="#c
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="va">paths</span> <span class="op">=</span> <span class="kw">with</span> pkgs<span class="op">;</span> <span class="op">[</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># this package is called from a flake.nix alongside the derivation for the website</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        inputs.self.packages.$<span class="op">{</span><span class="va">pkgs</span>.<span class="va">system</span><span class="op">}</span>.your-website</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        inputs.self.packages.$<span class="op">{</span><span class="va">pkgs</span>.<span class="va">stdenv</span>.<span class="va">system</span><span class="op">}</span>.your-website</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        nodejs</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        bash</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="op">];</span></span>
@@ -261,7 +261,7 @@ class="sourceCode nix"><code class="sourceCode nix"><span id="cb4-1"><a href="#c
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="va">extraOptions</span> <span class="op">=</span> <span class="op">[</span><span class="st">&quot;--network=host&quot;</span><span class="op">];</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">image</span> <span class="op">=</span> <span class="st">&quot;your-website&quot;</span><span class="op">;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">imageFile</span> <span class="op">=</span> inputs.website<span class="op">-</span>flake.packages.$<span class="op">{</span><span class="va">pkgs</span>.<span class="va">system</span><span class="op">}</span>.dockerImage<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">imageFile</span> <span class="op">=</span> inputs.website<span class="op">-</span>flake.packages.$<span class="op">{</span><span class="va">pkgs</span>.<span class="va">stdenv</span>.<span class="va">system</span><span class="op">}</span>.dockerImage<span class="op">;</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">};</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
