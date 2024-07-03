@@ -8,16 +8,20 @@
   inherit (lib.modules) mkIf;
   inherit (osConfig) modules;
 
-  sys = modules.system;
-  prg = sys.programs;
+  env = modules.usrEnv;
+  prg = env.programs;
 
   spicePkgs = inputs.spicetify.packages.${pkgs.stdenv.system}.default;
 in {
   imports = [inputs.spicetify.homeManagerModule];
   config = mkIf prg.spotify.enable {
     programs.spicetify = {
-      spotifyPackage = pkgs.spotify;
       enable = true;
+
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
+
+      spotifyPackage = pkgs.spotify;
       injectCss = true;
       replaceColors = true;
 
@@ -27,9 +31,6 @@ in {
         lyrics-plus
         new-releases
       ];
-
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
 
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay
